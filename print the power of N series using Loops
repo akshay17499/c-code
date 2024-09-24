@@ -1,0 +1,25 @@
+Sample Execution : 
+
+Test case 1 : 
+
+Enter the base value : 2
+
+Enter the exponential value : 5
+
+1 2 4 8 16 32
+
+
+#include<stdio.h>
+
+int main()
+{
+    int base,number,power=1;
+    printf("enter base & maimum power");
+    scanf("%d%d",&base,&number);
+    printf("1,");
+    for(int i=1;i<=number;i++)
+    {
+        power=power*base;
+        printf(" %d,",power);
+    }
+}
