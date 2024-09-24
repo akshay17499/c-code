@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<stdio_ext.h>
+int main()
+{
+    int num1,num2;
+    scanf("%d%d",&num1,&num2);
+    char operation;
+    __fpurge(stdin);
+    scanf("%c",&operation);
+    switch(operation)
+    {
+        case '+':printf("sum=%d",num1+num2);break;
+        case '-':printf("sub=%d",num1-num2);break;
+        case '*':printf("mul=%d",num1*num2);break;
+        case '%':printf("mod=%d",num1%num2);break;
+        case '/':printf("div=%g",(float)num1/num2);break;
+        default:printf("enter valid operation"); 
+    }
+}
