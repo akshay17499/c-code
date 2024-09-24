@@ -1,0 +1,13 @@
+#include<stdio.h>
+int main()
+{
+    char value;
+    scanf("%c",&value);
+    switch(value)
+    {
+        case 'A'...'Z':printf("Entered value is upper case alphabet");break;
+        case 'a'...'z':printf("Entered value is lower case alphabet");break;
+        case '0'...'9':printf("Entered value is a digit");break;
+        default: printf("Not alphabet or digit");
+    }
+}
