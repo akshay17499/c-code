@@ -1,0 +1,38 @@
+#include <stdio.h>
+void reverse(int *arr,int size)
+{
+    int max=arr[0];
+    int min=arr[0];
+    for(int i =0;i<size;i++)
+    {
+        if(arr[i]>max)
+        max=arr[i];
+        if(arr[i]<min)
+        min=arr[i];
+    }
+  
+    int temp=min;
+    int temp1=0;
+    for(int i=0;i<size;i++)
+    {
+         printf("%d ",min);
+          min=max;
+        for(int j=0;j<size;j++)
+        { 
+           if(arr[j]<=min && arr[j]>temp)
+           {
+               min=arr[j];
+              temp1=min;
+           }
+        }
+        min=temp1;
+        temp=min;
+    }
+}
+int main() {
+    
+   int arr[]={5,3,4,7,2};
+   reverse(arr,5);
+
+    return 0;
+}
