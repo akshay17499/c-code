@@ -1,0 +1,41 @@
+#include<stdio.h>
+
+int max_sum(int *arr,int size,int size_k)
+{
+    int sum = 0;
+    int end=0;
+    for(end=0 ;end<size_k;end++)
+    {
+        sum = sum + arr[end];
+       
+    }
+    int temp=0;
+    temp=sum;
+    for(int start = 0; start < (size - size_k); start++)
+    {
+        sum = sum + arr[start+end] - arr[start];
+       
+        if(sum>temp)
+        temp=sum;
+    }
+    return temp;
+}
+int main()
+{
+    int size;
+    int size_k;
+    printf("enter size of arr : ");
+    scanf("%d",&size);
+    printf("enter sub array size : ");
+    scanf("%d",&size_k);
+    int arr[size];
+    printf("enter array elements");
+    for(int i=0;i<size;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    int sum = 0;
+    sum = max_sum(arr,size,size_k);
+    printf("%d",sum);
+    
+}
