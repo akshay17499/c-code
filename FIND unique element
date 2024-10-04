@@ -1,0 +1,115 @@
+#include <stdio.h>
+#include<stdlib.h>
+typedef struct node
+{
+    int data;
+    struct node*next;
+    int count;
+}node;
+
+node*create_n(int data)
+{
+    node*newnode;
+    newnode=(node*)malloc(sizeof(node));
+    newnode->data=data;
+    newnode->next=NULL;
+    newnode->count=1;
+    return newnode;
+}
+void hash_t(node*ht,int *arr,int size)
+{
+    for(int i=0;i<size;i++)
+    {
+        ht[i].data=-1;
+        ht[i].next=NULL;
+        ht[i].count=0;
+    }
+    for(int i=0;i<size;i++)
+    {int flag=0;
+        int index=(arr[i]%size+size)%size;
+        if(ht[index].data==-1||ht[index].data==arr[i])
+        {
+            ht[index].data=arr[i];
+            ht[index].count=ht[index].count+1;
+        }
+        else if (ht[index].next==NULL)
+        {
+            ht[index].next=create_n(arr[i]);
+        }
+        else
+        {
+            node*temp=&ht[index];
+            while(temp!=NULL)
+            {
+                if(temp->data==arr[i])
+                {
+                    temp->count=temp->count+1;
+                    flag=1;
+                    break;
+                }
+                if(temp->next==NULL)
+                break;
+                temp=temp->next;
+            }
+            if(flag==0)
+            temp->next=create_n(arr[i]);
+        } 
+    }    
+}
+void display_ht(node*ht,int size)
+{
+    for(int i=0;i<size;i++)
+    {
+        printf("data : %d count : %d \n",ht[i].data,ht[i].count); 
+        if(ht[i].next!=NULL)
+        {
+            node*temp=&ht[i];
+            while(temp!=NULL)
+            {
+                 printf("data->%d count->%d\n",temp->data,temp->count);
+                 temp=temp->next;
+            }
+        }
+    }
+}
+
+int singleNumber(int* nums, int size) 
+{
+   node *ht=(node*)malloc(size*sizeof(node));
+    hash_t(ht,nums,size);
+    for(int i=0;i<size;i++)
+    {
+        if(ht[i].count==1)
+        {
+            return ht[i].data;
+        }
+        if(ht[i].next!=NULL)
+        {
+            node*temp=&ht[i];
+            while(temp!=NULL)
+            {
+                if(temp->count==1)
+                return temp->data;
+                temp=temp->next;
+            }
+        }
+    }
+    return 0;
+}
+int main()
+{
+    int size;
+    printf("enter size of array : ");
+    scanf("%d",&size);
+    printf("enter array elements");
+    int arr[size];
+    for(int i=0;i<size;i++)
+    {
+        scanf("%d",&arr[i]);
+    }
+    node *ht=(node*)malloc(size*sizeof(node));
+     hash_t(ht,arr,size);
+     display_ht(ht,size);
+   int n =  singleNumber(arr, size) ;
+  printf("%d",n);
+}
