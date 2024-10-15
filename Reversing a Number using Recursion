@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+void rev_num(int *num,int *revnum)
+{
+    if(*num==0)
+    return ;
+    int digit=*num%10;
+    *revnum=*revnum * 10+digit;
+    *num=*num/10;
+    rev_num(num,revnum);
+}
+
+int main()
+{
+    int num;
+    scanf("%d",&num);
+    int revnum=0;
+    rev_num(&num,&revnum);
+    printf("%d",revnum);
+}
