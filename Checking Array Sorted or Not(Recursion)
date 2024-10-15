@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+int check(int *num,int index,int size)
+{
+    if(index==size-1)
+    return 1 ;
+   if(num[index]<num[index+1])
+   {
+      return check(num,index+1,size);
+   }
+   else 
+   return 0;
+}
+
+int main()
+{
+    int num[]={1,2,3,4,3};
+    int revnum=check(num,0,5);
+    printf("%d",revnum);
+}
