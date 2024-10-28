@@ -1,0 +1,22 @@
+#include<stdio.h>
+
+void generic_swap_function(void*temp1,void*temp2,int size)
+{
+    while(size)
+    {size--;
+    char temp=*(char*)temp1;
+    *(char*)temp1=*(char*)temp2;
+    *(char*)temp2=temp;
+    temp1++;temp2++;
+    }
+}
+int main()
+{
+     n;
+    int n1;
+    printf("enter the number : ");
+    scanf("%d%d",&n,&n1);
+    swap(&n,&n1,sizeof(n));
+    printf("After swap n-> %d n1-> %d ",n,n1);
+    
+}
