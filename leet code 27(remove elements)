@@ -1,0 +1,40 @@
+#include<stdio.h>
+
+int removeelement(int*arr,int size,int val)
+{
+    int freq[51]={0};
+    for(int i=0;i<size;i++)
+    {
+        freq[arr[i]] +=1;
+    }
+   if(val>50||freq[val]==0)
+   return size;
+   freq[val]=0;
+   size=0;
+   for(int i=0;i<51;i++)
+   {
+      if(freq[i]>0)
+        {
+          int num = freq[i];
+          while(num--)
+          {
+            arr[size++] = i;
+          }
+        } 
+   }
+   return size;
+}
+
+int main()
+{
+    int size;
+    scanf("%d",&size);
+    int arr[size];
+    for(int i=0;i<size;i++)
+    scanf("%d",arr+i);
+   int element;
+  scanf("%d",&element);
+   size = removeelement(arr,size,element);
+   for(int i=0;i<size;i++)
+   printf("%d ",arr[i]);
+}
