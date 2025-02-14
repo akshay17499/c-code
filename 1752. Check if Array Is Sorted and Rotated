@@ -1,0 +1,35 @@
+bool check(int* nums, int size) {
+    int index = -1;
+    for(int i=0;i<size-1;i++)
+    {
+      if(nums[i]>nums[i+1])
+      index = i;
+
+    }
+    if(index==-1)
+    return true;
+    int farr[100];
+    int sarr[100];
+    for(int i=0;i<size;i++)
+    {
+        if(i<=index)
+        farr[i]=nums[i];
+        else
+        sarr[i-1-index] = nums[i];
+    }
+    int z=0;
+    for(int i=0;i<size;i++)
+    {
+        if(i<size-index-1)
+        nums[i]=sarr[i];
+        else
+        nums[i] = farr[z++];
+    }
+    for(int i=0;i<size-1;i++)
+    {
+        printf("%d ",nums[i]);
+        if(nums[i]>nums[i+1])
+        return false;
+    }
+    return true;
+}
