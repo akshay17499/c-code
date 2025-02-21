@@ -1,0 +1,15 @@
+int numJewelsInStones(char* jewels, char* stones) 
+{
+    int sum=0;
+     int arr2[128]={0};
+     int j =strlen(jewels);
+     int s = strlen(stones);
+     for(int i=0;i<s;i++)
+     arr2[stones[i]]+=1;
+     for(int i=0;i<j;i++)
+     {
+        if(arr2[jewels[i]]>0)
+        sum+=arr2[jewels[i]];
+     }    
+     return sum;
+}
