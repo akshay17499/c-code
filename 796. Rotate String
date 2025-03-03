@@ -1,0 +1,31 @@
+bool rotateString(char* s, char* goal) 
+{
+    if(strlen(s)!=strlen(goal))
+    return false;
+   char *arr = malloc(sizeof(char)*2*strlen(s)+1);
+   strcpy(arr,s);
+   strcat(arr,s);
+   int size = 2*strlen(s);
+   int size_g = strlen(goal);
+   int j=0;
+   int start=0,flag=0;
+   for(int i=0;i<size;i++)
+   {
+      if(arr[i]==goal[j])
+      {
+        j++;
+        if(flag==1)
+        start =i;
+        flag =0;
+         if(j==size_g)
+         return true;
+      }
+      else{
+        if(j>0)
+        i = start;
+        flag = 1;
+        j=0;
+      }   
+   }
+   return false;
+}
