@@ -1,0 +1,45 @@
+ bool compare(int*arr1,int*arr2)
+ {
+    for(int i=0;i<128;i++)
+    {
+        if(arr1[i]!=arr2[i])
+        return false;
+    }
+    return true;
+ }
+
+int* findAnagrams(char* s, char* p, int* returnSize) {
+    int p_len = strlen(p);
+    int s_len = strlen(s);
+     int *arr = malloc(sizeof(int)*s_len);
+     int k=0;
+     if(p_len>s_len)
+     {
+        * returnSize =0;
+        return NULL;
+     }
+     int t_arr[128];
+      int t_arr1[128]={0};
+     for(int i=0;i<p_len;i++)
+     {
+        t_arr[p[i]] += 1;
+     }
+     char last = s[0];
+      for(int i=0;i<p_len;i++)
+      {
+        t_arr1[s[i]] += 1;
+      }
+    if(compare(t_arr,t_arr1))
+    arr[k++] = 0;
+
+    for(int i=p_len;i<s_len;i++)
+    {
+        t_arr1[s[i]] += 1;
+        t_arr1[last] -= 1;
+        if(compare(t_arr,t_arr1))
+          arr[k++] = i-p_len+1;
+       last = s[i-p_len+1];      
+    }
+    * returnSize = k;
+    return arr;
+}
