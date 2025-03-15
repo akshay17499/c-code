@@ -1,0 +1,54 @@
+void swap(int*num1 , int*num2)
+{
+    int temp = *num1;
+    *num1 = *num2;
+    *num2 = temp;
+}
+int ascending(int num1,int num2)
+{
+    return num1 > num2? 1 :0;
+}
+
+int descending(int num1,int num2)
+{
+    return num1 > num2? 0 : 1;
+}
+void bubble_sort(int*arr,int size,int(*compare)(int , int))
+{
+    for(int i = 0; i < size - 1; i++)
+    {
+        for(int j = 0; j < size - i - 1;j++)
+        {
+            if(compare(arr[j],arr[j+1]))
+            {
+                swap(&arr[j],&arr[j+1]);
+            }
+        }
+    }
+}
+int main()
+{
+    int size;
+    printf("enter size : ");
+    scanf("%d",&size);
+    int arr[size];
+    printf("Array Elements : ");
+    for(int i = 0 ; i < size ; i++)
+    {
+        scanf("%d",arr+i);
+    }
+    int option;
+    printf("1.Ascending\n2.Descending\nEnter : ");
+    scanf("%d",&option);
+    switch(option)
+    {
+        case 1 : printf("array elements in ascending order : ");
+                 bubble_sort(arr,size,ascending);
+                 break;
+        case 2 : printf("array elements in descending order : ");
+                 bubble_sort(arr,size,descending);
+                 break;
+    }
+    for(int i = 0; i < size; i++)
+        printf("%d ",arr[i]);
+}
